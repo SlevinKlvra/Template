@@ -162,7 +162,7 @@ fun Greeting(robotViewModel: RobotViewModel, recognizedText: String) {
                     Button(
                         modifier = Modifier.width(150.dp).height(35.dp),
                         onClick = {robotViewModel.comenzarSeguimiento()}) {
-                        Text("Seguimiento", fontSize = 12.sp)
+                        Text("Seguimiento0000", fontSize = 12.sp)
                     }
                     Button(
                         modifier = Modifier.width(150.dp).height(35.dp),
