@@ -2,7 +2,7 @@ buildscript {
 
     extra.apply {
         set("compose_version", "1.2.0")
-        set("kotlin_version", "1.7.20")
+        set("kotlin_version", "1.9.0")
         set("camerax_version", "1.3.0-beta01")
     }
 
@@ -12,6 +12,7 @@ buildscript {
     }
 
     dependencies {
+
         // other plugins...
         classpath ("com.google.dagger:hilt-android-gradle-plugin:2.47")
         classpath ("com.android.tools.build:gradle:8.2.2")
@@ -21,6 +22,6 @@ buildscript {
 plugins {
     id("com.android.application") version "8.2.2" apply false
     id("com.android.library") version "8.2.2" apply false
-    id("org.jetbrains.kotlin.android") version "1.7.20" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.0" apply false
     id("com.google.dagger.hilt.android") version "2.47" apply false
 }

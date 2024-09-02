@@ -1,6 +1,8 @@
 package com.intec.template.robot
 
 import android.content.Context
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.ainirobot.coreservice.client.ApiListener
 import com.ainirobot.coreservice.client.speech.SkillApi
 import com.ainirobot.coreservice.client.speech.SkillCallback
@@ -10,6 +12,9 @@ class SkillApiService @Inject constructor(
     private val context: Context
 ) {
     private var skillApi: SkillApi = SkillApi()
+
+    // LiveData para observar los resultados parciales del reconocimiento de voz
+    val partialSpeechResult = MutableLiveData<String>()
 
     private val apiListener = object : ApiListener {
         override fun handleApiDisabled() {
@@ -26,18 +31,13 @@ class SkillApiService @Inject constructor(
         }
     }
 
-    init {
-        connectApi()
-    }
-
-    private fun connectApi() {
-        skillApi.connectApi(context, apiListener)
-    }
-
     private val mSkillCallback = object : SkillCallback() {
 
         override fun onSpeechParResult(text: String?) {
-            //TO-DO("Not yet implemented")
+            text?.let {
+                Log.d("ESCUCHA",text)
+                partialSpeechResult.postValue(it)
+            }
         }
 
         override fun onStart() {
@@ -55,6 +55,14 @@ class SkillApiService @Inject constructor(
         override fun onQueryEnded(queryEndStatus: Int) {
             //TO-DO("Not yet implemented")
         }
+    }
+
+    init {
+        connectApi()
+    }
+
+    private fun connectApi() {
+        skillApi.connectApi(context, apiListener)
     }
 
     // Métodos adicionales según sea necesario...

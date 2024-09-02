@@ -276,11 +276,11 @@ class RobotManager @Inject constructor(
     }
 
     fun moveHeadUp(){
-        RobotApi.getInstance().moveHead(0, "absolute", "absolute", 50, 80, headListener)
+        RobotApi.getInstance().moveHead(0, "absolute", "absolute", 50, 10, headListener)
     }
 
     fun moveHeadDown(){
-        RobotApi.getInstance().moveHead(0, "absolute", "absolute", 50, 10, headListener)
+        RobotApi.getInstance().moveHead(0, "absolute", "absolute", 50, 80, headListener)
     }
 
     fun resetHead(){
@@ -309,5 +309,9 @@ class RobotManager @Inject constructor(
         // Lógica para ejecutar TTS
         // Por ejemplo, usando una API de TTS proporcionada por el SDK del robot
         robotConnectionService.skillApi.playText(text, textListener)
+    }
+
+    fun goTo(destinyGoal: String){
+        RobotApi.getInstance().startNavigation(0, destinyGoal,0.12345, 100000, actionListener)
     }
 }
